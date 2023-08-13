@@ -43,5 +43,7 @@ driver.find_element(By.ID, "nav-orders").click()
 sleep(5)
 expected_result = 'Sign in'
 actual_results = driver.find_element(By.XPATH, "//h1[@class='a-spacing-small']").text
-assert expected_result == actual_results
+assert expected_result == actual_results, f'Expected{actual_results} but got {expected_result}'
 print('Test case Passed')
+
+driver.quit()
