@@ -1,17 +1,6 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
 
-
-# @given('Open Amazon page')
-# def open_amazon(context):
-#     context.driver.get('https://www.amazon.com/')
-
-
-@when('User clicks on returns and orders')
-def click_on_returns_orders(context):
-    context.driver.find_element(By.ID, 'nav-orders').click()
-
-
 @then('Verify user see sign in option')
 def verify_signin_results(context):
     expected_result = 'Sign in'
