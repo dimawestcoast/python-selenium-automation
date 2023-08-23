@@ -34,3 +34,16 @@ def verify_many_links(context):
     # context.driver.find_element(*FOOTER_LINKS) # for a single element
     links = context.driver.find_elements(*FOOTER_LINKS)
     assert len(links) > 1 #for multipe elements
+
+
+@then('Verify there are 5 links on the page')
+def verify_bestseller_links(context):
+    links = context.driver.find_elements(By.CSS_SELECTOR, "[class*='nav-tab'] a")
+    print(f'Total links {len(links)}')
+    assert len(links) == 5, f'expected {5} but got {len(links)}'
+
+
+
+@when('User clicks on bestsellers page')
+def click_on_bestsellers(context):
+    context.driver.find_element(By.CSS_SELECTOR, '[href="/gp/bestsellers/?ref_=nav_cs_bestsellers"]').click()
