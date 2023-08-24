@@ -5,6 +5,7 @@ SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
 SEARCH_BUTTON = (By.ID, 'nav-search-submit-button')
 ORDERS_BUTTON = (By.ID, 'nav-orders')
 FOOTER_LINKS = (By.CSS_SELECTOR, '.navFooterDescItem')
+SEARCH_RESULT = (By.CSS_SELECTOR, '.a-color-state.a-text-bold')
 
 @given('Open Amazon page')
 def open_amazon(context):
@@ -42,6 +43,10 @@ def verify_bestseller_links(context):
     print(f'Total links {len(links)}')
     assert len(links) == 5, f'expected {5} but got {len(links)}'
 
+@then('Verify search result is {expected_result}')
+def verify_search_result(context, expected_result):
+    actual_result = context.driver.find_element(*SEARCH_RESULT).text
+    assert expected_result == actual_result, f'Error, expected {expected_result} did not match actual {actual_result}'
 
 
 @when('User clicks on bestsellers page')
