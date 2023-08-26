@@ -1,11 +1,13 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
 SEARCH_BUTTON = (By.ID, 'nav-search-submit-button')
 ORDERS_BUTTON = (By.ID, 'nav-orders')
 FOOTER_LINKS = (By.CSS_SELECTOR, '.navFooterDescItem')
 SEARCH_RESULT = (By.CSS_SELECTOR, '.a-color-state.a-text-bold')
+SIGNIN_BTN = (By.CSS_SELECTOR, 'nav-signin-tooltip .nav-action-signin-button')
 
 @given('Open Amazon page')
 def open_amazon(context):
@@ -21,6 +23,13 @@ def search_on_amazon(context, search_word):
 def click_on_returns_orders(context):
     context.driver.find_element(*ORDERS_BUTTON).click()
 
+@when('User clicks on bestsellers page')
+def click_on_bestsellers(context):
+    context.driver.find_element(By.CSS_SELECTOR, '[href="/gp/bestsellers/?ref_=nav_cs_bestsellers"]').click()
+
+@when('Click on button from SignIn popup')
+def click_signin_popup(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGNIN_BTN)).click()
 
 @then('Verify footer has {expected_amount} links')
 def verify_link_amount(context, expected_amount):
@@ -48,7 +57,3 @@ def verify_search_result(context, expected_result):
     actual_result = context.driver.find_element(*SEARCH_RESULT).text
     assert expected_result == actual_result, f'Error, expected {expected_result} did not match actual {actual_result}'
 
-
-@when('User clicks on bestsellers page')
-def click_on_bestsellers(context):
-    context.driver.find_element(By.CSS_SELECTOR, '[href="/gp/bestsellers/?ref_=nav_cs_bestsellers"]').click()
