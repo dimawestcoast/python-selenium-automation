@@ -33,3 +33,8 @@ Feature: Tests for amazon search
     When Click on Add to cart button
 #    When Open cart page
     Then Verify cart has 1 item(s)
+
+Scenario: Verify that user can see product names and image
+  Given Open Amazon page
+  When Search for coffee
+  Then Verify that every product has a name and an image

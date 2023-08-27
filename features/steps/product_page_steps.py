@@ -9,6 +9,8 @@ CURRENT_COLOR = (By.CSS_SELECTOR, "#variation_color_name .selection")
 
 @given('Open Amazon product {product_id} page')
 def open_amazon_product(context, product_id):
+    context.driver.get('https://www.amazon.com/')
+    context.driver.refresh()
     context.driver.get(f'https://www.amazon.com/dp/{product_id}/')
 
 @then('Verify user can click through colors')

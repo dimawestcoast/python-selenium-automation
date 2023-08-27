@@ -11,13 +11,16 @@ SIGNIN_BTN = (By.CSS_SELECTOR, 'nav-signin-tooltip .nav-action-signin-button')
 
 @given('Open Amazon page')
 def open_amazon(context):
-    context.driver.get('https://www.amazon.com/')
+    context.app.main_page.open_main()
+    context.driver.refresh()
+    # context.driver.get('https://www.amazon.com/')
 
 
-@when('Search for {search_word}')
-def search_on_amazon(context, search_word):
-    context.driver.find_element(*SEARCH_FIELD).send_keys(search_word)
-    context.driver.find_element(*SEARCH_BUTTON).click()
+@when('Search for {product}')
+def search_on_amazon(context, product):
+    context.app.header.search_product(product)
+    # context.driver.find_element(*SEARCH_FIELD).send_keys(search_word)
+    # context.driver.find_element(*SEARCH_BUTTON).click()
 
 @when('User clicks on returns and orders')
 def click_on_returns_orders(context):
@@ -54,6 +57,7 @@ def verify_bestseller_links(context):
 
 @then('Verify search result is {expected_result}')
 def verify_search_result(context, expected_result):
-    actual_result = context.driver.find_element(*SEARCH_RESULT).text
-    assert expected_result == actual_result, f'Error, expected {expected_result} did not match actual {actual_result}'
+    context.app.search_result_page.verify_search_result(expected_result)
+    #actual_result = context.driver.find_element(*SEARCH_RESULT).text
+    #assert expected_result == actual_result, f'Error, expected {expected_result} did not match actual {actual_result}'
 
