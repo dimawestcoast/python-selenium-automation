@@ -70,3 +70,49 @@ def sum_of_three(number:int):
     return result
 test_result = sum_of_three(291)
 print(test_result)
+
+def reverse_string(s: str):
+    print(s[::-1])
+
+reverse_string('abcde')
+
+
+#reverse integer:
+def reverse_negative_number(n: int):
+    string = str(n)
+    if string[0] == '-':
+        return int('-' + string[:0:-1])
+    else:
+        return int(string[::-1])
+
+print(reverse_negative_number(-451))
+print(reverse_negative_number(451))
+
+def is_anagram(s1: str, s2: str):
+    if len(s1) != len(s2):
+        return False
+    if sorted(s1) == sorted(s2):
+        return True
+    else:
+        return False
+
+print(is_anagram(s1='cat', s2='tac'))
+
+def is_palin(s: str):
+    if s == s[::-1]:
+        return True
+    else:
+        return False
+print(is_anagram('racecar'))
+
+#almost palindrome example rakdar
+def almost_palindrom(s: str):
+    word = len(s)
+    for i in range(word):
+        new_s = s[:i] + s[i + 1:]
+        if new_s == new_s[::-1]:
+            return True
+    return False
+print(almost_palindrom('rakdar'))
+
+
