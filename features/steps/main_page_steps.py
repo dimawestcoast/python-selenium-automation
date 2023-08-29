@@ -11,9 +11,7 @@ SIGNIN_BTN = (By.CSS_SELECTOR, 'nav-signin-tooltip .nav-action-signin-button')
 
 @given('Open Amazon page')
 def open_amazon(context):
-    context.app.main_page.open_main()
-    context.driver.refresh()
-    # context.driver.get('https://www.amazon.com/')
+    context.driver.get('https://www.amazon.com/')
 
 
 @when('Search for {product}')
@@ -24,7 +22,7 @@ def search_on_amazon(context, product):
 
 @when('User clicks on returns and orders')
 def click_on_returns_orders(context):
-    context.driver.find_element(*ORDERS_BUTTON).click()
+    context.app.header.click_on_returns_orders()
 
 @when('User clicks on bestsellers page')
 def click_on_bestsellers(context):
