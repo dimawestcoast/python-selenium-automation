@@ -1,6 +1,7 @@
 from behave import given, when, then
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 
 SEARCH_FIELD = (By.ID, 'twotabsearchtextbox')
 SEARCH_BUTTON = (By.ID, 'nav-search-submit-button')
@@ -12,6 +13,7 @@ SIGNIN_BTN = (By.CSS_SELECTOR, 'nav-signin-tooltip .nav-action-signin-button')
 @given('Open Amazon page')
 def open_amazon(context):
     context.driver.get('https://www.amazon.com/')
+    sleep(2)
     context.driver.refresh()
 
 
@@ -21,17 +23,36 @@ def search_on_amazon(context, product):
     # context.driver.find_element(*SEARCH_FIELD).send_keys(search_word)
     # context.driver.find_element(*SEARCH_BUTTON).click()
 
+
 @when('User clicks on returns and orders')
 def click_on_returns_orders(context):
     context.app.header.click_on_returns_orders()
+
 
 @when('User clicks on bestsellers page')
 def click_on_bestsellers(context):
     context.driver.find_element(By.CSS_SELECTOR, '[href="/gp/bestsellers/?ref_=nav_cs_bestsellers"]').click()
 
+
 @when('Click on button from SignIn popup')
 def click_signin_popup(context):
-    context.driver.wait.until(EC.element_to_be_clickable(SIGNIN_BTN)).click()
+    context.app.header.click_signin_from_popup()
+
+
+@when('Wait for 3 sec')
+def wait_sec(context):
+    sleep(3)
+
+
+@then('Verify Sign In is clickable')
+def verify_signin_btn_clickable(context):
+    context.header.verify_signin_btn_clickable()
+
+
+@then('Verify Sign In disappears')
+def verify_signin_btn_disappears(context):
+    context.app.header.verify_signin_btn_disappears()
+
 
 @then('Verify footer has {expected_amount} links')
 def verify_link_amount(context, expected_amount):
@@ -54,9 +75,4 @@ def verify_bestseller_links(context):
     print(f'Total links {len(links)}')
     assert len(links) == 5, f'expected {5} but got {len(links)}'
 
-@then('Verify search result is {expected_result}')
-def verify_search_result(context, expected_result):
-    context.app.search_result_page.verify_search_result(expected_result)
-    #actual_result = context.driver.find_element(*SEARCH_RESULT).text
-    #assert expected_result == actual_result, f'Error, expected {expected_result} did not match actual {actual_result}'
 
