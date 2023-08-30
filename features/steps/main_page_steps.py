@@ -12,6 +12,7 @@ SIGNIN_BTN = (By.CSS_SELECTOR, 'nav-signin-tooltip .nav-action-signin-button')
 @given('Open Amazon page')
 def open_amazon(context):
     context.driver.get('https://www.amazon.com/')
+    context.driver.refresh()
 
 
 @when('Search for {product}')
