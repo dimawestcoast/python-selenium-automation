@@ -35,7 +35,7 @@ def click_on_bestsellers(context):
 
 
 @when('Click on button from SignIn popup')
-def click_signin_popup(context):
+def click_signin_from_popup(context):
     context.app.header.click_signin_from_popup()
 
 
@@ -46,7 +46,7 @@ def wait_sec(context):
 
 @then('Verify Sign In is clickable')
 def verify_signin_btn_clickable(context):
-    context.header.verify_signin_btn_clickable()
+    context.app.header.verify_signin_btn_clickable()
 
 
 @then('Verify Sign In disappears')
