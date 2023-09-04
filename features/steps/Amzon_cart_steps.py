@@ -6,7 +6,7 @@ def click_on_cart(context):
     context.driver.find_element(By.CSS_SELECTOR, '.nav-cart-icon.nav-sprite').click()
 
 
-@then('Verify cart if empty')
+@then('Verify cart is empty')
 def verify_cart_empty(context):
     expected_result = 'Your Amazon Cart is empty'
     actual_result = context.driver.find_element(By.CSS_SELECTOR, ".a-row.sc-your-amazon-cart-is-empty").text
