@@ -14,3 +14,8 @@ Feature: Tests for main page UI
     Given Open Amazon page
     When User clicks on bestsellers page
     Then Verify there are 5 links on the page
+
+  Scenario:  User can see language options
+    Given Open Amazon page
+    When Hover over language options
+    Then Verify Spanish option present

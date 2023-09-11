@@ -75,4 +75,6 @@ def verify_bestseller_links(context):
     print(f'Total links {len(links)}')
     assert len(links) == 5, f'expected {5} but got {len(links)}'
 
-
+@then('Verify Spanish option is present')
+    def verify_spanish_lang(context):
+    pass
