@@ -90,3 +90,4 @@ def subtract_min(arr: list):
 
 print(subtract_min([9, 2, 5, 4, 7, 6, 1]))
 
+-----------------------------
